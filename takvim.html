@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2025 Eylül Takvimi</title>
+  <style>
+    :root { --accent: #2563eb; --muted:#f2f5fb; --text:#0f172a; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); margin: 0; padding: 24px; background: white; }
+    .calendar { max-width: 720px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 18px rgba(15,23,42,.06); }
+    .cal-header { display:flex; align-items:center; justify-content:center; gap:12px; padding: 16px; background: linear-gradient(180deg, #eff6ff, #ffffff); }
+    .cal-header h1 { margin:0; font-size: clamp(20px, 3vw, 28px); font-weight: 700; letter-spacing:.4px; }
+    .grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .dow { background:#f8fafc; font-size: 12px; text-transform: uppercase; letter-spacing:.6px; color:#475569; border-bottom:1px solid #e5e7eb; }
+    .dow div { padding: 10px 8px; text-align:center; font-weight:600; }
+    .day { min-height: 82px; border-bottom:1px solid #eef2f7; border-right:1px solid #eef2f7; background:white; position:relative; }
+    .day:nth-child(7n) { border-right: none; }
+    .date { position:absolute; top:8px; right:8px; font-size: 12px; color:#334155; }
+    .muted { background: var(--muted); color:#94a3b8; }
+    .weekend { background: #fbfdff; }
+    .today { outline: 2px solid var(--accent); outline-offset:-2px; font-weight:700; }
+    @media (max-width: 560px){
+      .day { min-height: 64px; }
+      .date { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="calendar" aria-label="2025 Eylül Takvimi">
+    <header class="cal-header">
+      <h1>Eylül 2025</h1>
+    </header>
+
+    <!-- Gün başlıkları: Pazartesi ile başlar -->
+    <section class="grid dow" aria-hidden="true">
+      <div>Pzt</div><div>Sal</div><div>Çar</div><div>Per</div><div>Cum</div><div>Cmt</div><div>Paz</div>
+    </section>
+
+    <!-- Günler -->
+    <section class="grid" role="table" aria-label="Eylül 2025 günleri">
+      <!-- 1. hafta (1–7) -->
+      <div class="day"><span class="date">1</span></div>
+      <div class="day"><span class="date">2</span></div>
+      <div class="day"><span class="date">3</span></div>
+      <div class="day"><span class="date">4</span></div>
+      <div class="day"><span class="date">5</span></div>
+      <div class="day weekend"><span class="date">6</span></div>
+      <div class="day weekend"><span class="date">7</span></div>
+
+      <!-- 2. hafta (8–14) -->
+      <div class="day"><span class="date">8</span></div>
+      <div class="day"><span class="date">9</span></div>
+      <div class="day"><span class="date">10</span></div>
+      <div class="day"><span class="date">11</span></div>
+      <div class="day"><span class="date">12</span></div>
+      <div class="day weekend"><span class="date">13</span></div>
+      <div class="day weekend"><span class="date">14</span></div>
+
+      <!-- 3. hafta (15–21) -->
+      <div class="day"><span class="date">15</span></div>
+      <div class="day"><span class="date">16</span></div>
+      <div class="day"><span class="date">17</span></div>
+      <div class="day"><span class="date">18</span></div>
+      <div class="day"><span class="date">19</span></div>
+      <div class="day weekend"><span class="date">20</span></div>
+      <div class="day weekend"><span class="date">21</span></div>
+
+      <!-- 4. hafta (22–28) -->
+      <div class="day"><span class="date">22</span></div>
+      <div class="day"><span class="date">23</span></div>
+      <div class="day"><span class="date">24</span></div>
+      <div class="day"><span class="date">25</span></div>
+      <div class="day"><span class="date">26</span></div>
+      <div class="day weekend"><span class="date">27</span></div>
+      <div class="day weekend"><span class="date">28</span></div>
+
+      <!-- 5. hafta (29–30 ve boş hücreler) -->
+      <div class="day"><span class="date">29</span></div>
+      <div class="day"><span class="date">30</span></div>
+      <div class="day muted" aria-hidden="true"></div>
+      <div class="day muted" aria-hidden="true"></div>
+      <div class="day muted" aria-hidden="true"></div>
+      <div class="day muted weekend" aria-hidden="true"></div>
+      <div class="day muted weekend" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <!-- İsteğe bağlı: Bugünü otomatik vurgulamak için (eğer sayfa 2025-09'da görüntüleniyorsa) -->
+  <script>
+    (function(){
+      const now = new Date();
+      if (now.getFullYear() === 2025 && now.getMonth() === 8) { // Eylül = 8
+        const d = now.getDate();
+        const cells = document.querySelectorAll('.grid .day .date');
+        cells.forEach(el => {
+          if (parseInt(el.textContent, 10) === d) el.parentElement.classList.add('today');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
